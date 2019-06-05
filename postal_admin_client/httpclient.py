@@ -1,7 +1,13 @@
 from urllib.parse import urljoin
+import logging
 
 import bs4
 import requests
+
+logger = logging.getLogger(__name__)
+log_handler = logging.StreamHandler()
+logger.addHandler(log_handler)
+logger.setLevel(logging.INFO)
 
 
 class HTTPClient:
@@ -16,11 +22,11 @@ class HTTPClient:
         self._is_authenticated =  False
         self._authenticity_token = None
 
-    def post(self, path=None, data=None, auth=True) -> requests.Response:
-        return self.request('POST', path=path, data=data, auth=auth)
+    def post(self, path=None, data=None, params=None, auth=True) -> requests.Response:
+        return self.request('POST', path=path, data=data, params=params, auth=auth)
 
     def get(self, path=None, params=None, auth=True) -> requests.Response:
-        return self.request('GET', path=params, params=params, auth=auth)
+        return self.request('GET', path=path, params=params, auth=auth)
 
     def request(self, method: str, path: str = None, data: dict = None,
             params: dict = None, auth: bool = True) -> requests.Response:
@@ -40,18 +46,18 @@ class HTTPClient:
         # We cannot do a post request before an initial request
         # have been done to obtain an authenticity token
         if not self._is_authenticated and auth is True:
-            self.get(auth=False)
             self._authenticate()
 
         if method == 'POST' and not self._authenticity_token:
-            self.get()
+            logger.info('Attempting post without authenticity token. Doing additional get request')
+            self.get(path=path, auth=False)
 
         if path:
             url = urljoin(self._base_url, path)            
         else:
             url = self._base_url
 
-        print(method, url)
+        logger.info('HTTP %s %s', method, url)
 
         response = self._sess.request(
             method,
@@ -73,17 +79,20 @@ class HTTPClient:
         authenticity_token = None
         for meta in metas:
             if meta.get('name') == 'csrf-token':
-                token = meta.get('content')
-                if token:
-                    return token
+                authenticity_token = meta.get('content')
+                break
 
-        raise ValueError('Cannot parse out authenticity_token')
+        if not authenticity_token:
+            raise ValueError('Cannot parse out authenticity_token')
+
+        logger.info('authenticity_token %s', authenticity_token)
+        return authenticity_token
 
     def _authenticate(self):
         """Quck and dirty auth"""
-        result = self.request(
-            'POST',
-            'login',
+        self.get('login', auth=False)
+        result = self.post(
+            path='login',
             params={
                 'authenticity_token': self._authenticity_token,
                 'email_address': self._email,
