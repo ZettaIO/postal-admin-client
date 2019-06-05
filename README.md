@@ -12,3 +12,19 @@ so we rely on faking a browers filling forms and dealing with
 csfr tokens to make rails happy.
 
 This can for example be used to manage and create new organizations.
+
+## Example
+
+```python
+from pprint import pprint
+import postal_admin_client
+
+client = postal_admin_client.Client(
+    'https://postal.example.com',
+    email='user@example.com',
+    password='myhopefullysecurepassword',
+)
+
+orgs = client.list_organizations()
+pprint(orgs, indent=2)
+```
