@@ -17,6 +17,26 @@ class Client:
         """
         self._http = HTTPClient(base_url, email=email, password=password)
 
+    def create_organization(self, name: str, shortname: str):
+        """
+        Create an organization
+
+        Args:
+            name (str): Display name of the organization
+            shortname (str): used in usernames and the API to identify your organization.
+                             It should only contain letters, numbers & hyphens. 
+        """
+        self._http.get('organizations/new')
+        response = self._http.post(
+            'organizations',
+            params={
+                'utf8': True,
+                'organization[name]': name,
+                'organization[permalink]': shortname,
+                'commit': 'Create+organization',
+            })
+        # TODO: Parse result
+
     def list_organizations(self):
         response = self._http.get()
         organizations = []
