@@ -94,6 +94,7 @@ class HTTPClient:
         result = self.post(
             path='login',
             params={
+                'utf8': True,
                 'authenticity_token': self._authenticity_token,
                 'email_address': self._email,
                 'password': self._password,
