@@ -5,9 +5,6 @@ import bs4
 import requests
 
 logger = logging.getLogger(__name__)
-log_handler = logging.StreamHandler()
-logger.addHandler(log_handler)
-logger.setLevel(logging.INFO)
 
 
 class HTTPClient:
