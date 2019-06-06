@@ -28,3 +28,12 @@ client = postal_admin_client.Client(
 orgs = client.list_organizations()
 pprint(orgs, indent=2)
 ```
+
+## Logging
+
+This package is using `logging`. You can configure logging behaviour
+(handler, log level, propagation etc) by obtaining the logger for this package.
+
+```python
+logger = logging.getLogger('postal_admin_client')
+```
