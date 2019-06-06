@@ -1,7 +1,10 @@
 import bs4
+import logging
 import requests
 
 from postal_admin_client.httpclient import HTTPClient
+
+logger = logging.getLogger(__name__)
 
 
 class Client:
@@ -35,6 +38,10 @@ class Client:
                 'organization[permalink]': shortname,
                 'commit': 'Create+organization',
             })
+
+        # Rails will return HTTP 422 if the organizaton already exists
+        if response.status_code == 422:
+            logger.exception("Organizaton with shortname '%s' already exists", shortname)
 
         # TODO: Parse result
 

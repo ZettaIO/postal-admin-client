@@ -54,10 +54,10 @@ class HTTPClient:
             }
 
         logger.info('HTTP %s %s', method, url)
-        logger.info('Headers: %s', headers)
-        logger.info('Data: %s', data)
-        logger.info('Json: %s', json)
-        logger.info('Params: %s', params)
+        logger.debug('Headers: %s', headers)
+        logger.debug('Data: %s', data)
+        logger.debug('Json: %s', json)
+        logger.debug('Params: %s', params)
 
         response = self._sess.request(
             method,
@@ -67,14 +67,17 @@ class HTTPClient:
             params=params,
             headers=headers,
         )
+        logger.debug("Status code %s", response.status_code)
+        logger.debug("Respons body:\n %s", response.content.decode())
         try:
             response.raise_for_status()
         except Exception as ex:
             logger.error(ex)
-            logger.error(response.content.decode())
             raise
 
-        self._authenticity_token = self._find_authenticity_token(response)
+        if method == 'GET':
+            self._authenticity_token = self._find_authenticity_token(response)
+ 
         return response
 
     def _find_authenticity_token(self, response) -> str:
@@ -93,7 +96,7 @@ class HTTPClient:
         if not authenticity_token:
             raise ValueError('Cannot parse out authenticity_token')
 
-        logger.info('authenticity_token %s', authenticity_token)
+        logger.debug('authenticity_token %s', authenticity_token)
         return authenticity_token
 
     def _authenticate(self):
