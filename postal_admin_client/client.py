@@ -29,15 +29,22 @@ class Client:
         self._http.get('organizations/new')
         response = self._http.post(
             'organizations',
-            params={
+            data={
                 'utf8': True,
                 'organization[name]': name,
                 'organization[permalink]': shortname,
                 'commit': 'Create+organization',
             })
+
         # TODO: Parse result
 
     def list_organizations(self):
+        """
+        List all organization
+
+        Returns:
+            List of organization dicts
+        """
         response = self._http.get()
         organizations = []
 
@@ -50,3 +57,6 @@ class Client:
             })
 
         return organizations
+
+    def delete_organization(self, shortname: str):
+        path = 'org/{}/delete'.format(shortname)

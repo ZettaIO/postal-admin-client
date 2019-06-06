@@ -22,14 +22,14 @@ class HTTPClient:
         self._is_authenticated =  False
         self._authenticity_token = None
 
-    def post(self, path=None, data=None, params=None, auth=True) -> requests.Response:
-        return self.request('POST', path=path, data=data, params=params, auth=auth)
+    def post(self, path=None, data=None, json=None, params=None, auth=True) -> requests.Response:
+        return self.request('POST', path=path, data=data, json=None, params=params, auth=auth)
 
     def get(self, path=None, params=None, auth=True) -> requests.Response:
         return self.request('GET', path=path, params=params, auth=auth)
 
     def request(self, method: str, path: str = None, data: dict = None,
-            params: dict = None, auth: bool = True) -> requests.Response:
+            json: dict = None, params: dict = None, auth: bool = True) -> requests.Response:
         """
         Generic http request handling csrf
 
@@ -43,29 +43,39 @@ class HTTPClient:
         Returns:
             HttpResponse
         """
-        # We cannot do a post request before an initial request
-        # have been done to obtain an authenticity token
-        if not self._is_authenticated and auth is True:
+        if not self._is_authenticated:
             self._authenticate()
 
-        if method == 'POST' and not self._authenticity_token:
-            logger.info('Attempting post without authenticity token. Doing additional get request')
-            self.get(path=path, auth=False)
-
-        if path:
-            url = urljoin(self._base_url, path)            
-        else:
-            url = self._base_url
+        url = self._url(path)
+        headers = {}
+        if method == 'POST':
+            headers={
+                'X-CSRF-Token': self._authenticity_token,
+                # 'Content-Type': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'credentials': 'same-origin',
+            }
 
         logger.info('HTTP %s %s', method, url)
+        logger.info('Headers: %s', headers)
+        logger.info('Data: %s', data)
+        logger.info('Json: %s', json)
+        logger.info('Params: %s', params)
 
         response = self._sess.request(
             method,
             url,
             data=data,
-            params=params
+            json=json,
+            params=params,
+            headers=headers,
         )
-        response.raise_for_status()
+        try:
+            response.raise_for_status()
+        except Exception as ex:
+            print(response.content.decode())
+            raise
+
         self._authenticity_token = self._find_authenticity_token(response)
         return response
 
@@ -89,16 +99,27 @@ class HTTPClient:
         return authenticity_token
 
     def _authenticate(self):
-        """Quck and dirty auth"""
-        self.get('login', auth=False)
-        result = self.post(
-            path='login',
+        """
+        Obtain and post the login form.
+        This process needs the authenticity token in the post body itself
+        and do not use X-CSRF-Token header like posts in logged in state.
+        """
+        response = self._sess.get(self._url('login'))
+        self._authenticity_token = self._find_authenticity_token(response)
+        response = self._sess.post(
+            self._url('login'),
             params={
                 'utf8': True,
                 'authenticity_token': self._authenticity_token,
                 'email_address': self._email,
                 'password': self._password,
             },
-            auth=False,
         )
+        self.authenticity_token = self._find_authenticity_token(response)
         self._is_authenticated = True
+
+    def _url(self, path):
+        if path:
+            return urljoin(self._base_url, path)            
+
+        return self._base_url
