@@ -1,7 +1,7 @@
 
 # postal-admin-client
 
-**WORK IN PROGRESS: Ths package is stll under development
+**WORK IN PROGRESS: This package is still under development
 and currenly do not have any releases.**
 
 Admin client for the open source mail delivery platform
