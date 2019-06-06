@@ -73,7 +73,8 @@ class HTTPClient:
         try:
             response.raise_for_status()
         except Exception as ex:
-            print(response.content.decode())
+            logger.error(ex)
+            logger.error(response.content.decode())
             raise
 
         self._authenticity_token = self._find_authenticity_token(response)
