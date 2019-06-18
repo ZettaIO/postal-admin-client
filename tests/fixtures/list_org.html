@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class='main'>
+<head>
+<title>Welcome - Postal</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="fake-csrf-token" />
+<link rel="stylesheet" media="screen" href="/assets/application/application.css" data-turbolinks-track="reload" />
+<script src="/assets/application/application.js" data-turbolinks-track="reload"></script>
+<link href='/assets/favicon.png' rel='shortcut icon'>
+<meta name="turbolinks-cache-control" content="no-cache">
+
+</head>
+<body>
+
+<header class='siteHeader' data-turbolinks-permanent>
+<div class='siteHeader__inside'>
+<div class='siteHeader__logo'><a href="/">Postal</a></div>
+<p class='siteHeader__version'>The open source e-mail platform</p>
+<ul class='siteHeader__nav'>
+<li class='siteHeader__navItem siteHeader__navItem--user'>Einar Forselv</li>
+<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/settings">My Settings</a></li>
+<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/ip_pools">IP Pools</a></li>
+<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" rel="nofollow" data-method="delete" href="/logout">Logout</a></li>
+</ul>
+</div>
+</header>
+<div class='siteContent'>
+<section class='siteContent__main'>
+<div class='pageHeader'>
+<h1 class='pageHeader__title'>Welcome to Postal, User</h1>
+</div>
+<div class='pageContent pageContent--compact'>
+<p class='pageContent__intro u-margin'>
+Organizations are entities which are able to deploy mail servers.
+Choose an existing organization from the list opposite or use the button below
+to create a new one.
+</p>
+<ul class='largeList u-margin'>
+<li class='largeList__item'>
+<a class="largeList__link" href="/org/at">Anansi Technologies
+</a></li>
+<li class='largeList__item'>
+<a class="largeList__link" href="/org/cov">Council of Venice
+</a></li>
+<li class='largeList__item'>
+<a class="largeList__link" href="/org/og">Orochi Group
+</a></li>
+</ul>
+<p class='u-center'><a class="button button--positive" href="/organizations/new">Start another organization</a></p>
+</div>
+
+</section>
+</div>
+<!--- Postal Version 1.0.0-1ef7dbd67e-stable -->
+</body>
+</html>
