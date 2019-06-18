@@ -14,7 +14,7 @@ class PostalAdminTestcase(TestCase):
     @classmethod
     def setUpClass(self):
         self.client = postal_admin_client.Client(
-            'https://postal',
+            'https://postal.test',
             email='me@somewhere',
             password='mypass',
         )
