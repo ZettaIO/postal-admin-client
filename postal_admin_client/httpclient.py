@@ -3,6 +3,7 @@ import logging
 
 import bs4
 import requests
+from requests.exceptions import HTTPError
 
 logger = logging.getLogger(__name__)
 
@@ -48,9 +49,10 @@ class HTTPClient:
         if method == 'POST':
             headers={
                 'X-CSRF-Token': self._authenticity_token,
-                # 'Content-Type': 'application/json',
                 'X-Requested-With': 'XMLHttpRequest',
                 'credentials': 'same-origin',
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'Accept': 'application/json, text/javascript, */*; q=0.01',
             }
 
         logger.info('HTTP %s %s', method, url)
@@ -71,9 +73,9 @@ class HTTPClient:
         logger.debug("Respons body:\n %s", response.content.decode())
         try:
             response.raise_for_status()
-        except Exception as ex:
+        except HTTPError as ex:
             logger.error(ex)
-            raise
+            raise HTTPError("{}\n{}".format(ex, response.content))
 
         if method == 'GET':
             self._authenticity_token = self._find_authenticity_token(response)
