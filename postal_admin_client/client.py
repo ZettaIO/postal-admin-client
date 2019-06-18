@@ -44,6 +44,7 @@ class Client:
             logger.exception("Organizaton with shortname '%s' already exists", shortname)
 
         # TODO: Parse result
+        return None
 
     def list_organizations(self):
         """
@@ -55,7 +56,7 @@ class Client:
         response = self._http.get()
         organizations = []
 
-        soup = bs4.BeautifulSoup(open('list_org.html', mode='r'), features="html.parser")
+        soup = bs4.BeautifulSoup(response.content, features="html.parser")
         orgs = soup.find_all('a', {'class': 'largeList__link'})
         for org in orgs:
             organizations.append({
