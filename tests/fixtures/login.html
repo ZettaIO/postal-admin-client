@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html class='subPage'>
+<head>
+<title>Login - Postal</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="fake-csrf-token" />
+<link rel="stylesheet" media="screen" href="/assets/application/application.css" data-turbolinks-track="reload" />
+<script src="/assets/application/application.js" data-turbolinks-track="reload"></script>
+<link href='/assets/favicon.png' rel='shortcut icon'>
+<meta name="turbolinks-cache-control" content="no-cache">
+</head>
+<body>
+<div class='subPageBox'>
+<div class='subPageBox__title'>
+Welcome to Postal
+</div>
+
+<div class='subPageBox__content'>
+<form class="loginForm" action="/login" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="&#x2713;" /><input type="hidden" name="authenticity_token" value="fake-csrf-token" />
+<input type="hidden" name="return_to" id="return_to" />
+<p class='loginForm__input'><input type="email" name="email_address" id="email_address" value="" autocomplete="off" spellcheck="false" class="input input--text input--onWhite" placeholder="Your e-mail address" autofocus="autofocus" tabindex="1" /></p>
+<p class='loginForm__input'><input type="password" name="password" id="password" value="" class="input input--text input--onWhite" placeholder="Your password" tabindex="2" /></p>
+<div class='loginForm__submit'>
+<ul class='loginForm__links'>
+<li><a href="/login/reset">Forgotten your password?</a></li>
+</ul>
+<p><input type="submit" name="commit" value="Login" class="button button--positive" tabindex="3" data-disable-with="Login" /></p>
+</div>
+</form>
+
+</div>
+
+</div>
+</body>
+</html>
