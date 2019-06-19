@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html class='main'>
+<head>
+<title>Add - Users - einarf - Postal</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="fake-csrf-token" />
+<link rel="stylesheet" media="screen" href="/assets/application/application.css" data-turbolinks-track="reload" />
+<script src="/assets/application/application.js" data-turbolinks-track="reload"></script>
+<link href='/assets/favicon.png' rel='shortcut icon'>
+<meta name="turbolinks-cache-control" content="no-cache">
+
+</head>
+<body>
+
+<header class='siteHeader' data-turbolinks-permanent>
+<div class='siteHeader__inside'>
+<div class='siteHeader__logo'><a href="/">Postal</a></div>
+<p class='siteHeader__version'>The open source e-mail platform</p>
+<ul class='siteHeader__nav'>
+<li class='siteHeader__navItem'></li>
+<li class='siteHeader__navItem siteHeader__navItem--organization'>
+<a class="siteHeader__navLinkWithMenu" href="/org/einarf">einarf</a>
+<ul class='siteHeader__subMenu'>
+<li class='siteHeader__subMenuItem siteHeader__subMenuItem--header'><a href="/org/einarf/settings">einarf</a></li>
+<li class='siteHeader__subMenuItem'><a class="siteHeader__subMenuLink" href="/org/einarf/settings">Organization Settings</a></li>
+<li class='siteHeader__subMenuItem'><a class="siteHeader__subMenuLink" href="/org/einarf/users">Manage Users</a></li>
+<li class='siteHeader__subMenuItem'><a class="siteHeader__subMenuLink" href="/organizations/new">Create new organization</a></li>
+</ul>
+</li>
+<li class='siteHeader__navItem siteHeader__navItem--user'>Einar Forselv</li>
+<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/settings">My Settings</a></li>
+<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/ip_pools">IP Pools</a></li>
+<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" rel="nofollow" data-method="delete" href="/logout">Logout</a></li>
+</ul>
+</div>
+</header>
+<div class='siteContent'>
+<section class='siteContent__main'>
+<div class='pageHeader'>
+<h1 class='pageHeader__title'>
+<span class='pageHeader__titlePrevious'>
+einarf
+&rarr;
+Users
+&rarr;
+</span>
+Add user
+</h1>
+</div>
+<div class='navBar'>
+<ul>
+<li class='navBar__item'><a class="navBar__link " href="/org/einarf">Mail Servers</a></li>
+<li class='navBar__item'><a class="navBar__link " href="/org/einarf/domains">Domains</a></li>
+<li class='navBar__item'><a class="navBar__link " href="/org/einarf/settings">Settings</a></li>
+<li class='navBar__item'><a class="navBar__link " href="/org/einarf/ip_pools">IPs</a></li>
+<li class='navBar__item'><a class="navBar__link is-active" href="/org/einarf/users">Users</a></li>
+<li class='navBar__item'><a class="navBar__link " href="/org/einarf/delete">Delete Organization</a></li>
+</ul>
+</div>
+
+<div class='pageContent pageContent--compact'>
+<p class='pageContent__intro u-margin'>
+To add someone to your organization enter their e-mail address below. If
+they don't already have a Postal account, they'll need to create one
+before you can add them to your account.
+</p>
+<form class="new_organization_user" id="new_organization_user" action="/org/einarf/users" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+<input type="hidden" name="invite" id="invite" />
+<fieldset class='fieldSet'>
+<div class='fieldSet__field'>
+<label class="fieldSet__label" for="organization_user_email_address">Email address</label>
+<div class='fieldSet__input'>
+<input autofocus="autofocus" class="input input--text" type="text" name="organization_user[email_address]" id="organization_user_email_address" />
+</div>
+</div>
+<div class='fieldSet__title'>
+What level of access do you wish to grant?
+</div>
+<div class='fieldSet__field'>
+<label class="fieldSet__label" for="organization_user_admin">Admin</label>
+<div class='fieldSet__input'>
+<select class="input input--select" name="organization_user[admin]" id="organization_user_admin"><option selected="selected" value="false">No - do not grant admin access</option>
+<option value="true">Yes - grant admin access</option></select>
+<p class='fieldSet__text'>
+Users who have admin access will be permitted to manage the organization as if they had the same
+access as the organization owner. This includes managing users, creating & deleting mail servers,
+and even removing the account. This level of access should granted carefully.
+Regardless of which level you select, this user will have access to all servers within the organization.
+</p>
+</div>
+</div>
+</fieldset>
+<div class='fieldSetSubmit buttonSet'>
+<input type="submit" name="commit" value="Add User" class="button button--positive js-form-submit" data-disable-with="Add User" />
+<div class='fieldSetSubmit__delete'>
+<a class="button button--neutral" href="/org/einarf/users">Back to user list</a>
+</div>
+</div>
+</form>
+</div>
+
+</section>
+</div>
+<!--- Postal Version 1.0.0-1ef7dbd67e-stable -->
+</body>
+</html>
