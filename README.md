@@ -4,7 +4,7 @@
 **WORK IN PROGRESS: This package is still under development
 and currenly do not have any releases.**
 
-Admin client for the open source mail delivery platform
+A python 3.5+ ddmin client for the open source mail delivery platform
 [postal](https://github.com/atech/postal).
 
 This package is only for postal administrators
@@ -58,6 +58,13 @@ List and create/invite users
 * Delete organization
 * List users in organization
 * Invite user to organization
+
+## Running Tests
+
+```
+pip install -r tests/requirements.txt
+tox
+```
 
 ## Improvements
 
