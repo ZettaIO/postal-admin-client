@@ -1,6 +1,7 @@
 import bs4
 import logging
 import requests
+from typing import List
 
 from postal_admin_client.httpclient import HTTPClient
 
@@ -20,7 +21,7 @@ class Client:
         """
         self._http = HTTPClient(base_url, email=email, password=password)
 
-    def create_organization(self, name: str, shortname: str = None):
+    def create_organization(self, name: str, shortname: str = None) -> dict:
         """
         Create an organization.
         Letting postal generate the shortname is generally safer.
@@ -49,7 +50,7 @@ class Client:
         shortname = data['redirect_to'].split('/')[-1]
         return {'name': name, 'shortname': shortname}
 
-    def list_organizations(self):
+    def list_organizations(self) -> List[dict]:
         """
         List all organization
 
@@ -69,7 +70,7 @@ class Client:
 
         return organizations
 
-    def delete_organization(self, shortname: str):
+    def delete_organization(self, shortname: str) -> None:
         """
         Delete an organization and all their resources
 
@@ -97,7 +98,7 @@ class Client:
         if 'alert' in data:
             raise ValueError("Incorrect password entered when deleting organizaton")
 
-    def list_users(self, shortname: str):
+    def list_users(self, shortname: str) -> List[dict]:
         """
         List users in an organization
 
@@ -125,7 +126,7 @@ class Client:
 
         return users
 
-    def create_user(self, shortname: str, email: str, admin=False):
+    def create_user(self, shortname: str, email: str, admin=False) -> None:
         """
         Create/invite a user in an organization.
 
@@ -147,7 +148,7 @@ class Client:
             HttpError if a user already with the email already exist in the organiation
         """
         self._http.get('org/{}/users/new'.format(shortname))
-        self._http.post(
+        response = self._http.post(
             'org/{}/users'.format(shortname),
             data={
                 'utf8': True,
