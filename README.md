@@ -18,6 +18,8 @@ This can for example be used to manage and create new organizations.
 
 ## Example
 
+Initalize client
+
 ```python
 >> import postal_admin_client
 >>
@@ -26,13 +28,27 @@ This can for example be used to manage and create new organizations.
 >>     email='user@example.com',
 >>     password='myhopefullysecurepassword',
 >> )
->>
+```
+
+List/create/delete organization
+
+```python
 >> client.list_organizations()
 [{'name': 'Anansi Technologies', 'shortname': 'at'},
  {'name': 'Council of Venice', 'shortname': 'cov'},
  {'name': 'Orochi Group', 'shortname': 'og'}]
 >> client.create_organization('Illuminati')
 {'name': 'Illuminati', 'shortname': 'il'}
+>> client.delete_organization('li')
+```
+
+List and create/invite users
+
+```python
+>> client.list_users()
+[{'name': 'Kirsten Geary', 'email': 'kirsten.geary@illuminati.test'},
+ {'name': 'Alex McCall', 'email': 'alex.mccall@illuminati.test'}]
+>> client.create_user('il', 'nadia.shestova@illuminati.test', admin=False)
 ```
 
 ## Supported Operations
@@ -61,5 +77,5 @@ logger = logging.getLogger('postal_admin_client')
 ## Contributing
 
 Do not hesistate creating pull requests with completed or
-partial work or create issues. There very likely many
+partial work or create issues. There are very likely many
 things to improve.
