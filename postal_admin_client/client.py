@@ -20,12 +20,16 @@ class Client:
         """
         self._http = HTTPClient(base_url, email=email, password=password)
 
-    def create_organization(self, name: str, shortname: str):
+    def create_organization(self, name: str, shortname: str = None):
         """
-        Create an organization
+        Create an organization.
+        Letting postal generate the shortname is generally safer.
+        If supplying a shortname be sure it's not already in use.
 
         Args:
             name (str): Display name of the organization
+        
+        Keyword Args:
             shortname (str): used in usernames and the API to identify your organization.
                              It should only contain letters, numbers & hyphens. 
         """
@@ -39,12 +43,10 @@ class Client:
                 'commit': 'Create+organization',
             })
 
-        # Rails will return HTTP 422 if the organizaton already exists
-        if response.status_code == 422:
-            logger.exception("Organizaton with shortname '%s' already exists", shortname)
-
-        # TODO: Parse result
-        return None
+        # Construct the org info
+        data = response.json()
+        shortname = data['redirect_to'].split('/')[-1]
+        return {'name': name, 'shortname': shortname}
 
     def list_organizations(self):
         """
