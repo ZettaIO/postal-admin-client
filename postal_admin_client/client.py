@@ -1,6 +1,5 @@
 import bs4
 import logging
-import requests
 from typing import List
 
 from postal_admin_client.httpclient import HTTPClient
@@ -29,10 +28,10 @@ class Client:
 
         Args:
             name (str): Display name of the organization
-        
+
         Keyword Args:
             shortname (str): used in usernames and the API to identify your organization.
-                             It should only contain letters, numbers & hyphens. 
+                             It should only contain letters, numbers & hyphens.
         """
         self._http.get('organizations/new')
         response = self._http.post(
@@ -76,14 +75,14 @@ class Client:
 
         Args:
             shortname (str): The organization to delete
-        
+
         Raises:
             ValueError if password is incorrect
             HttpError is org does not exist
         """
         self._http.get('org/{}/delete'.format(shortname))
         response = self._http.post(
-            path = 'org/{}/delete'.format(shortname),
+            path='org/{}/delete'.format(shortname),
             data={
                 'utf8': True,
                 '_method': 'delete',
@@ -148,7 +147,7 @@ class Client:
             HttpError if a user already with the email already exist in the organiation
         """
         self._http.get('org/{}/users/new'.format(shortname))
-        response = self._http.post(
+        self._http.post(
             'org/{}/users'.format(shortname),
             data={
                 'utf8': True,

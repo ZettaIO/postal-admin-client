@@ -17,7 +17,7 @@ class HTTPClient:
         self._sess = requests.Session()
         self._email = email
         self._password = password
-        self._is_authenticated =  False
+        self._is_authenticated = False
         self._authenticity_token = None
 
     def post(self, path=None, data=None, json=None, params=None, auth=True) -> requests.Response:
@@ -27,7 +27,7 @@ class HTTPClient:
         return self.request('GET', path=path, params=params, auth=auth)
 
     def request(self, method: str, path: str = None, data: dict = None,
-            json: dict = None, params: dict = None, auth: bool = True) -> requests.Response:
+                json: dict = None, params: dict = None, auth: bool = True) -> requests.Response:
         """
         Generic http request handling csrf
 
@@ -37,7 +37,7 @@ class HTTPClient:
             data (dict): Dictonary of data
             params (dict): Query parameters
             auth (bool): Authenticate if needed
-        
+
         Returns:
             HttpResponse
         """
@@ -47,7 +47,7 @@ class HTTPClient:
         url = self._url(path)
         headers = {}
         if method == 'POST':
-            headers={
+            headers = {
                 'X-CSRF-Token': self._authenticity_token,
                 'X-Requested-With': 'XMLHttpRequest',
                 'credentials': 'same-origin',
@@ -79,7 +79,7 @@ class HTTPClient:
 
         if method == 'GET':
             self._authenticity_token = self._find_authenticity_token(response)
- 
+
         return response
 
     def _find_authenticity_token(self, response) -> str:
@@ -123,6 +123,6 @@ class HTTPClient:
 
     def _url(self, path):
         if path:
-            return urljoin(self._base_url, path)            
+            return urljoin(self._base_url, path)
 
         return self._base_url
