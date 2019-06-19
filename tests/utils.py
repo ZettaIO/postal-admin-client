@@ -15,7 +15,8 @@ FIXTURES = {
     'GET:': {'file': 'org_list.html'},
     'GET:/login': {'file': 'login.html'},
     'POST:/login': {'file': 'org_list.html'},
-    'GET:/organizations/new': {'file': 'org_new.html'}
+    'GET:/organizations/new': {'file': 'org_new.html'},
+    'GET:/org/nada/delete': {'file': 'org_del.html'},
 }
 
 
