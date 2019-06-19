@@ -1,4 +1,4 @@
-[![pypi](https://badge.fury.io/py/postal-admin-client.svg)](https://pypi.python.org/pypi/demosys-py) [![travis](https://api.travis-ci.org/ZettaIO/postal-admin-client.svg?branch=master)](https://travis-ci.org/ZettaIO/postal-admin-client)
+[![pypi](https://badge.fury.io/py/postal-admin-client.svg)](https://pypi.python.org/pypi/postal-admin-client) [![travis](https://api.travis-ci.org/ZettaIO/postal-admin-client.svg?branch=master)](https://travis-ci.org/ZettaIO/postal-admin-client)
 
 # postal-admin-client
 
