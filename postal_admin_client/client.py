@@ -69,4 +69,29 @@ class Client:
         return organizations
 
     def delete_organization(self, shortname: str):
-        path = 'org/{}/delete'.format(shortname)
+        """
+        Delete an organization and all their resources
+
+        Args:
+            shortname (str): The organization to delete
+        
+        Raises:
+            ValueError if password is incorrect
+            HttpError is org does not exist
+        """
+        self._http.get('org/{}/delete'.format(shortname))
+        response = self._http.post(
+            path = 'org/{}/delete'.format(shortname),
+            data={
+                'utf8': True,
+                '_method': 'delete',
+                'return_to': '',
+                'password': self._http._password,
+                'commit': 'Delete+this+organization,+mail+servers+and+all+messages',
+            },
+        )
+        data = response.json()
+        # Success response: {"redirect_to":"/?nrd=1"}
+        # Wrong pw response: {"alert":"The password you entered was invalid. Please check and try again."}
+        if 'alert' in data:
+            raise ValueError("Incorrect password entered when deleting organizaton")
