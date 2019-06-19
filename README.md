@@ -85,6 +85,8 @@ tox
 * Properly parse out validation errors. For example: `create_user`
   raises `HTTPError(422)` in three different cases and it would be useful
   for the user to easily be able to separate between them.
+* Add CLI support
+* Support more operations
 
 ## Logging
 
