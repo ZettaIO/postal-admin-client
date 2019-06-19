@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html class='main'>
+<head>
+<title>Create a new organization - Postal</title>
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="fake-csrf-token" />
+<link rel="stylesheet" media="screen" href="/assets/application/application.css" data-turbolinks-track="reload" />
+<script src="/assets/application/application.js" data-turbolinks-track="reload"></script>
+<link href='/assets/favicon.png' rel='shortcut icon'>
+<meta name="turbolinks-cache-control" content="no-cache">
+
+</head>
+<body>
+
+<header class='siteHeader' data-turbolinks-permanent>
+<div class='siteHeader__inside'>
+<div class='siteHeader__logo'><a href="/">Postal</a></div>
+<p class='siteHeader__version'>The open source e-mail platform</p>
+<ul class='siteHeader__nav'>
+<li class='siteHeader__navItem siteHeader__navItem--user'>Einar Forselv</li>
+<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/settings">My Settings</a></li>
+<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/ip_pools">IP Pools</a></li>
+<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" rel="nofollow" data-method="delete" href="/logout">Logout</a></li>
+</ul>
+</div>
+</header>
+<div class='siteContent'>
+<section class='siteContent__main'>
+<div class='pageHeader'>
+<h1 class='pageHeader__title'>Create a new organization</h1>
+</div>
+<div class='pageContent pageContent--compact'>
+<p class='pageContent__intro u-margin'>
+If you're starting a new organization you can do so by completing this form. You'll be able
+to invite new users & create mail servers as soon as it has been created.
+</p>
+<form class="new_organization" id="new_organization" action="/organizations" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+<fieldset class='fieldSet'>
+<div class='fieldSet__field'>
+<label class="fieldSet__label" for="organization_name">Name</label>
+<div class='fieldSet__input'><input autofocus="autofocus" class="input input--text" type="text" name="organization[name]" id="organization_name" /></div>
+</div>
+<div class='fieldSet__field'>
+<label class="fieldSet__label" for="organization_permalink">Short name</label>
+<div class='fieldSet__input'>
+<input class="input input--text" placeholder="Automatically generated" type="text" name="organization[permalink]" id="organization_permalink" />
+<p class='fieldSet__text'>
+This is a short name which is used in usernames and the API to identify your organization.
+It should only contain letters, numbers & hyphens.
+</p>
+</div>
+</div>
+</fieldset>
+<div class='fieldSetSubmit buttonSet'>
+<input type="submit" name="commit" value="Create organization" class="button button--positive js-form-submit" data-disable-with="Create organization" />
+<div class='fieldSetSubmit__delete'>
+<a class="button button--neutral" href="/">Back to homepage</a>
+</div>
+</div>
+</form></div>
+
+</section>
+</div>
+<!--- Postal Version 1.0.0-1ef7dbd67e-stable -->
+</body>
+</html>
