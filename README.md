@@ -35,6 +35,20 @@ This can for example be used to manage and create new organizations.
 {'name': 'Illuminati', 'shortname': 'il'}
 ```
 
+## Supported Operations
+
+* List organizations
+* Create organization
+* Delete organization
+* List users in organization
+* Invite user to organization
+
+## Improvements
+
+* Properly parse out validation errors. For example: `create_user`
+  raises `HTTPError(422)` in three different cases and it would be useful
+  for the user to easily be able to separate between them.
+
 ## Logging
 
 This package is using `logging`. You can configure logging behaviour
@@ -43,3 +57,9 @@ This package is using `logging`. You can configure logging behaviour
 ```python
 logger = logging.getLogger('postal_admin_client')
 ```
+
+## Contributing
+
+Do not hesistate creating pull requests with completed or
+partial work or create issues. There very likely many
+things to improve.
