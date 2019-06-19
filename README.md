@@ -2,9 +2,6 @@
 
 # postal-admin-client
 
-**WORK IN PROGRESS: This package is still under development
-and currenly do not have any releases.**
-
 A python 3.5+ admin client for the open source mail delivery platform
 [postal](https://github.com/atech/postal).
 
@@ -16,6 +13,12 @@ so we rely on faking a brower filling forms and dealing with
 csrf tokens to make rails happy.
 
 This can for example be used to manage and create new organizations.
+
+This package can be installed from PyPI
+
+```bash
+pip install postal-admin-client
+```
 
 ## Example
 
@@ -60,9 +63,19 @@ List and create/invite users
 * List users in organization
 * Invite user to organization
 
-## Running Tests
+## Dev Setup
 
+Basic Setup
+
+```bash
+python -m virtualenv .venv
+. .venv/bin/activate
+python setup.py develop
 ```
+
+Tests
+
+```bash
 pip install -r tests/requirements.txt
 tox
 ```
