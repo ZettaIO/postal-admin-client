@@ -1,10 +1,13 @@
 import json as js
+from contextlib import contextmanager
 from functools import lru_cache
 from pathlib import Path
 from urllib.parse import urlparse
+from unittest.mock import patch
 
 from requests.exceptions import HTTPError
 
+REQUEST_FUNC = 'requests.sessions.Session.request'
 FIXTURE_DIR = Path(__file__).parent / 'fixtures'
 
 # path: file
@@ -14,6 +17,21 @@ FIXTURES = {
     'POST:/login': {'file': 'org_list.html'},
     'GET:/organizations/new': {'file': 'org_new.html'}
 }
+
+
+@contextmanager
+def fixtures(method=None, path=None, fixture=None, json=None, status_code=200):
+    """Shorten patching"""
+    try:
+        with patch(REQUEST_FUNC, new=fixture_response(
+                override_method=method,
+                override_path=path,
+                fixture=fixture,
+                json=json,
+                override_status=status_code)):
+            yield None
+    finally:
+        pass
 
 
 @lru_cache(maxsize=None)
@@ -35,7 +53,7 @@ def get_fixture(path):
     raise ValueError("No fixture found for path {}".format(path))
 
 
-def fixture_response(override_method=None, override_path=None, fixture=None, json=None, status_code=200):
+def fixture_response(override_method=None, override_path=None, fixture=None, json=None, override_status=200):
     """Creates a fake request method returning an http response with a specific response"""
     if fixture:
         override_content = load_fixture(fixture)
@@ -50,8 +68,10 @@ def fixture_response(override_method=None, override_path=None, fixture=None, jso
 
         if path == override_path and method == override_method:
             content = override_content
+            status_code = override_status
         else:
             content = get_fixture(fixture_key)
+            status_code = 200
 
         return FakeHttpResponse(
             status_code=status_code,
