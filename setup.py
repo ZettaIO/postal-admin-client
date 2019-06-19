@@ -14,7 +14,7 @@ setup(
         'requests>=2.22',
         'beautifulsoup4>=4.7',
     ],
-    keywords = ['posta', 'admin', 'client'],
+    keywords = ['postal', 'admin', 'client'],
     classifiers=[
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
