@@ -19,17 +19,20 @@ This can for example be used to manage and create new organizations.
 ## Example
 
 ```python
-from pprint import pprint
-import postal_admin_client
-
-client = postal_admin_client.Client(
-    'https://postal.example.com',
-    email='user@example.com',
-    password='myhopefullysecurepassword',
-)
-
-orgs = client.list_organizations()
-pprint(orgs, indent=2)
+>> import postal_admin_client
+>>
+>> client = postal_admin_client.Client(
+>>     'https://postal.example.com',
+>>     email='user@example.com',
+>>     password='myhopefullysecurepassword',
+>> )
+>>
+>> client.list_organizations()
+[{'name': 'Anansi Technologies', 'shortname': 'at'},
+ {'name': 'Council of Venice', 'shortname': 'cov'},
+ {'name': 'Orochi Group', 'shortname': 'og'}]
+>> client.create_organization('Illuminati')
+{'name': 'Illuminati', 'shortname': 'il'}
 ```
 
 ## Logging
