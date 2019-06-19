@@ -41,7 +41,8 @@ class Client:
                 'organization[name]': name,
                 'organization[permalink]': shortname,
                 'commit': 'Create+organization',
-            })
+            },
+        )
 
         # Construct the org info
         data = response.json()
@@ -96,8 +97,33 @@ class Client:
         if 'alert' in data:
             raise ValueError("Incorrect password entered when deleting organizaton")
 
-    def user_list(self, shortname: str):
-        pass
+    def list_users(self, shortname: str):
+        """
+        List users in an organization
+
+        Args:
+            shortname (str): Organization shortname
+
+        Raises:
+            HttpError if organization do not exist
+        """
+        response = self._http.get('org/{}/users'.format(shortname))
+        users = []
+
+        soup = bs4.BeautifulSoup(response.content, features="html.parser")
+        entires = soup.find_all('li', {'class': 'userList__item'})
+        for entry in entires:
+            # print(entry.children)
+            name_tag = entry.find('p', {'class': 'userList__name'})
+            name = next(name_tag.strings).strip()
+            email_tag = entry.find('p', {'class': 'userList__email'})
+            email = next(email_tag.strings).strip()
+            users.append({
+                'name': name,
+                'email': email,
+            })
+
+        return users
 
     def create_user(self, shortname: str, email: str, admin=False):
         """
