@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='postal-admin-client',
-    version='0.1',
+    version='0.1.1',
     url="https://github.com/ZettaIO/postal-admin-client",
     description="Python admin client for the open source mail delivery platform Postal",
     long_description=open('README.md').read(),
