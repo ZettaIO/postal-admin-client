@@ -115,6 +115,10 @@ class Client:
 
         Keyword Args:
             admin (bool): Should the user be an administrator?
+
+        Raises:
+            HttpError if the email do not validate
+            HttpError if a user already with the email already exist in the organiation
         """
         self._http.get('org/{}/users/new'.format(shortname))
         self._http.post(
