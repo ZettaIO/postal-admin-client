@@ -43,13 +43,13 @@ List/create/delete organization
  {'name': 'Orochi Group', 'shortname': 'og'}]
 >> client.create_organization('Illuminati')
 {'name': 'Illuminati', 'shortname': 'il'}
->> client.delete_organization('li')
+>> client.delete_organization('il')
 ```
 
 List and create/invite users
 
 ```python
->> client.list_users()
+>> client.list_users('il')
 [{'name': 'Kirsten Geary', 'email': 'kirsten.geary@illuminati.test'},
  {'name': 'Alex McCall', 'email': 'alex.mccall@illuminati.test'}]
 >> client.create_user('il', 'nadia.shestova@illuminati.test', admin=False)
