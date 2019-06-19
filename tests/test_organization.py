@@ -5,6 +5,11 @@ from utils import fixtures
 
 
 class OrganizationTests(PostalAdminTestcase):
+    orgs = [
+        {'name': 'Anansi Technologies', 'shortname': 'at'},
+        {'name': 'Council of Venice', 'shortname': 'cov'},
+        {'name': 'Orochi Group', 'shortname': 'og'},
+    ]
 
     def test_list(self):
         """List organization"""
