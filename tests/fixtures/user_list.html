@@ -1,100 +1,113 @@
 <!DOCTYPE html>
 <html class='main'>
+
 <head>
-<title>Users - Illluminati - Postal</title>
-<meta name="csrf-param" content="authenticity_token" />
-<meta name="csrf-token" content="fake-csrf-token" />
-<link rel="stylesheet" media="screen" href="/assets/application/application.css" data-turbolinks-track="reload" />
-<script src="/assets/application/application.js" data-turbolinks-track="reload"></script>
-<link href='/assets/favicon.png' rel='shortcut icon'>
-<meta name="turbolinks-cache-control" content="no-cache">
+    <title>Users - Illluminati - Postal</title>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="fake-csrf-token" />
+    <link rel="stylesheet" media="screen" href="/assets/application/application.css" data-turbolinks-track="reload" />
+    <script src="/assets/application/application.js" data-turbolinks-track="reload"></script>
+    <link href='/assets/favicon.png' rel='shortcut icon'>
+    <meta name="turbolinks-cache-control" content="no-cache">
 
 </head>
+
 <body>
 
-<header class='siteHeader' data-turbolinks-permanent>
-<div class='siteHeader__inside'>
-<div class='siteHeader__logo'><a href="/">Postal</a></div>
-<p class='siteHeader__version'>The open source e-mail platform</p>
-<ul class='siteHeader__nav'>
-<li class='siteHeader__navItem'></li>
-<li class='siteHeader__navItem siteHeader__navItem--organization'>
-<a class="siteHeader__navLinkWithMenu" href="/org/il">Illuminati</a>
-<ul class='siteHeader__subMenu'>
-<li class='siteHeader__subMenuItem siteHeader__subMenuItem--header'><a href="/org/il/settings">Illuminati</a></li>
-<li class='siteHeader__subMenuItem'><a class="siteHeader__subMenuLink" href="/org/il/settings">Organization Settings</a></li>
-<li class='siteHeader__subMenuItem'><a class="siteHeader__subMenuLink" href="/org/il/users">Manage Users</a></li>
-<li class='siteHeader__subMenuItem'><a class="siteHeader__subMenuLink" href="/organizations/new">Create new organization</a></li>
-</ul>
-</li>
-<li class='siteHeader__navItem siteHeader__navItem--user'>Kirsten Geary</li>
-<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/settings">My Settings</a></li>
-<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/ip_pools">IP Pools</a></li>
-<li class='siteHeader__navItem'><a class="sideHeader__navItemLink" rel="nofollow" data-method="delete" href="/logout">Logout</a></li>
-</ul>
-</div>
-</header>
-<div class='siteContent'>
-<section class='siteContent__main'>
-<div class='pageHeader'>
-<h1 class='pageHeader__title'>
-<span class='pageHeader__titlePrevious'>
-il
-&rarr;
-</span>
-Users
-</h1>
-</div>
-<div class='navBar'>
-<ul>
-<li class='navBar__item'><a class="navBar__link " href="/org/il">Mail Servers</a></li>
-<li class='navBar__item'><a class="navBar__link " href="/org/il/domains">Domains</a></li>
-<li class='navBar__item'><a class="navBar__link " href="/org/il/settings">Settings</a></li>
-<li class='navBar__item'><a class="navBar__link " href="/org/il/ip_pools">IPs</a></li>
-<li class='navBar__item'><a class="navBar__link is-active" href="/org/il/users">Users</a></li>
-<li class='navBar__item'><a class="navBar__link " href="/org/il/delete">Delete Organization</a></li>
-</ul>
-</div>
+    <header class='siteHeader' data-turbolinks-permanent>
+        <div class='siteHeader__inside'>
+            <div class='siteHeader__logo'><a href="/">Postal</a></div>
+            <p class='siteHeader__version'>The open source e-mail platform</p>
+            <ul class='siteHeader__nav'>
+                <li class='siteHeader__navItem'></li>
+                <li class='siteHeader__navItem siteHeader__navItem--organization'>
+                    <a class="siteHeader__navLinkWithMenu" href="/org/il">Illuminati</a>
+                    <ul class='siteHeader__subMenu'>
+                        <li class='siteHeader__subMenuItem siteHeader__subMenuItem--header'><a
+                                href="/org/il/settings">Illuminati</a></li>
+                        <li class='siteHeader__subMenuItem'><a class="siteHeader__subMenuLink"
+                                href="/org/il/settings">Organization Settings</a></li>
+                        <li class='siteHeader__subMenuItem'><a class="siteHeader__subMenuLink"
+                                href="/org/il/users">Manage Users</a></li>
+                        <li class='siteHeader__subMenuItem'><a class="siteHeader__subMenuLink"
+                                href="/organizations/new">Create new organization</a></li>
+                    </ul>
+                </li>
+                <li class='siteHeader__navItem siteHeader__navItem--user'>Kirsten Geary</li>
+                <li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/settings">My Settings</a></li>
+                <li class='siteHeader__navItem'><a class="sideHeader__navItemLink" href="/ip_pools">IP Pools</a></li>
+                <li class='siteHeader__navItem'><a class="sideHeader__navItemLink" rel="nofollow" data-method="delete"
+                        href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class='siteContent'>
+        <section class='siteContent__main'>
+            <div class='pageHeader'>
+                <h1 class='pageHeader__title'>
+                    <span class='pageHeader__titlePrevious'>
+                        il
+                        &rarr;
+                    </span>
+                    Users
+                </h1>
+            </div>
+            <div class='navBar'>
+                <ul>
+                    <li class='navBar__item'><a class="navBar__link " href="/org/il">Mail Servers</a></li>
+                    <li class='navBar__item'><a class="navBar__link " href="/org/il/domains">Domains</a></li>
+                    <li class='navBar__item'><a class="navBar__link " href="/org/il/settings">Settings</a></li>
+                    <li class='navBar__item'><a class="navBar__link " href="/org/il/ip_pools">IPs</a></li>
+                    <li class='navBar__item'><a class="navBar__link is-active" href="/org/il/users">Users</a></li>
+                    <li class='navBar__item'><a class="navBar__link " href="/org/il/delete">Delete Organization</a></li>
+                </ul>
+            </div>
 
-<div class='pageContent pageContent--compact'>
-<p class='pageContent__intro u-margin'>
-You can share access to this organization with other people by adding them
-here. They'll need to create their own account first and then you'll be able
-to add them to your organization by entering their e-mail address.
-</p>
-<ul class='userList u-margin'>
-<li class='userList__item'>
-<img class="userList__avatar" src="https://secure.gravatar.com/avatar/dummy" />
-<div class='userList__details'>
-<p class='userList__name'>
-Kirsten Geary
-<span class='userList__owner label'>Owner</span>
-</p>
-<p class='userList__email'>kirsten.geary@illuminati.test</p>
-</div>
-<ul class='userList__actions'>
-</ul>
-</li>
-<li class='userList__item'>
-<img class="userList__avatar" src="https://secure.gravatar.com/avatar/dummy" />
-<div class='userList__details'>
-<p class='userList__name'>
-Alex McCall
-</p>
-<p class='userList__email'>alex.mccall@illuminati.test</p>
-</div>
-<ul class='userList__actions'>
-<li><a href="/org/il/users/uuid/edit">Edit permissions</a></li>
-<li><a data-confirm="Are you sure you wish to make Alex McCall the owner of this organization? They will be granted full admin access. You won&#39;t be able to change this back." data-disable-with="Promoting..." data-remote="true" rel="nofollow" data-method="post" href="/org/il/users/uuid/make_owner">Make owner</a></li>
-<li><a data-confirm="Are you sure you wish to revoke Alex McCall&#39;s access to the organization?" data-disable-with="Deleting..." class="userList__revoke" data-remote="true" rel="nofollow" data-method="delete" href="/org/il/users/uuid">Revoke access</a></li>
-</ul>
-</li>
-</ul>
-<p class='u-center'><a class="button button--positive" href="/org/il/users/new">Invite a new user</a></p>
-</div>
+            <div class='pageContent pageContent--compact'>
+                <p class='pageContent__intro u-margin'>
+                    You can share access to this organization with other people by adding them
+                    here. They'll need to create their own account first and then you'll be able
+                    to add them to your organization by entering their e-mail address.
+                </p>
+                <ul class='userList u-margin'>
+                    <li class='userList__item'>
+                        <img class="userList__avatar" src="https://secure.gravatar.com/avatar/dummy" />
+                        <div class='userList__details'>
+                            <p class='userList__name'>
+                                Kirsten Geary
+                                <span class='userList__owner label'>Owner</span>
+                            </p>
+                            <p class='userList__email'>kirsten.geary@illuminati.test</p>
+                        </div>
+                        <ul class='userList__actions'>
+                        </ul>
+                    </li>
+                    <li class='userList__item'>
+                        <img class="userList__avatar" src="https://secure.gravatar.com/avatar/dummy" />
+                        <div class='userList__details'>
+                            <p class='userList__name'>
+                                Alex McCall
+                            </p>
+                            <p class='userList__email'>alex.mccall@illuminati.test</p>
+                        </div>
+                        <ul class='userList__actions'>
+                            <li><a href="/org/il/users/uuid/edit">Edit permissions</a></li>
+                            <li><a data-confirm="Are you sure you wish to make Alex McCall the owner of this organization? They will be granted full admin access. You won&#39;t be able to change this back."
+                                    data-disable-with="Promoting..." data-remote="true" rel="nofollow"
+                                    data-method="post" href="/org/il/users/uuid/make_owner">Make owner</a></li>
+                            <li><a data-confirm="Are you sure you wish to revoke Alex McCall&#39;s access to the organization?"
+                                    data-disable-with="Deleting..." class="userList__revoke" data-remote="true"
+                                    rel="nofollow" data-method="delete" href="/org/il/users/uuid">Revoke access</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class='u-center'><a class="button button--positive" href="/org/il/users/new">Invite a new user</a>
+                </p>
+            </div>
 
-</section>
-</div>
-<!--- Postal Version 1.0.0-1ef7dbd67e-stable -->
+        </section>
+    </div>
+    <!--- Postal Version 1.0.0-1ef7dbd67e-stable -->
 </body>
+
 </html>
