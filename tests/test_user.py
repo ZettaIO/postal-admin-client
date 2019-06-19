@@ -19,4 +19,4 @@ class UserTests(PostalAdminTestcase):
         """Create/invite new user"""
         json = {"redirect_to":"https://postal.test/org/il/users"}
         with fixtures('POST', '/org/il/users', json=json):
-            orgs = self.client.create_user('il', 'user@illuminati.test', admin=True)
+            self.client.create_user('il', 'user@illuminati.test', admin=True)
