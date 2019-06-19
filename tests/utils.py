@@ -1,4 +1,5 @@
 import json as js
+from functools import lru_cache
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -14,6 +15,8 @@ FIXTURES = {
     'GET:/organizations/new': {'file': 'org_new.html'}
 }
 
+
+@lru_cache(maxsize=None)
 def load_fixture(name: str):
     with open(FIXTURE_DIR / name, mode='rb') as fd:
         return fd.read()
