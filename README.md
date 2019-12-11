@@ -102,3 +102,8 @@ logger = logging.getLogger('postal_admin_client')
 Do not hesistate creating pull requests with completed or
 partial work or create issues. There are very likely many
 things to improve.
+
+---
+This project is sponsored by [zetta.io](https://www.zetta.io)
+
+[![Zetta.IO](https://raw.githubusercontent.com/ZettaIO/postal-admin-client/master/.github/logo.png)](https://www.zetta.io)
